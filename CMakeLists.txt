@@ -1,6 +1,8 @@
 cmake_minimum_required(VERSION 3.0.0)
 project(graphics VERSION 0.1.0)
 
+set(CMAKE_CXX_STANDARD 20)
+
 include(CTest)
 enable_testing()
 
@@ -12,20 +14,18 @@ list(APPEND EXTRA_INCLUDES vendor/glfw/include)
 # End compile
 
 # Start to compile DearImGUI
-list(
-    APPEND IMGUI_FILES
-    vendor/imgui/imgui.cpp
-    vendor/imgui/imgui_demo.cpp
-    vendor/imgui/imgui_draw.cpp
-    vendor/imgui/imgui_tables.cpp
-    vendor/imgui/imgui_widgets.cpp
-    vendor/imgui/backends/imgui_impl_glfw.cpp
-    vendor/imgui/backends/imgui_impl_opengl3.cpp
+set(IMGUI_DIR vendor/imgui)
+# Search source code
+file(GLOB IMGUI_SOURCE ${IMGUI_DIR}/*.cpp)
+# Add the dependency file of DearImGUI + glfw
+list(APPEND IMGUI_SOURCE 
+    ${IMGUI_DIR}/backends/imgui_impl_glfw.cpp
+    ${IMGUI_DIR}/backends/imgui_impl_opengl3.cpp
 )
 # Compile
-add_library(imgui ${IMGUI_FILES})
+add_library(imgui STATIC ${IMGUI_SOURCE})
 list(APPEND EXTRA_LIBS imgui)
-list(APPEND EXTRA_INCLUDES vendor/imgui vendor/imgui/backends)
+list(APPEND EXTRA_INCLUDES ${IMGUI_DIR} ${IMGUI_DIR}/backends)
 # Link include dir
 target_include_directories(
     imgui PUBLIC
