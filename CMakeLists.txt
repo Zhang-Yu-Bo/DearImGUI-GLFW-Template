@@ -33,6 +33,13 @@ target_include_directories(
 )
 # End compile
 
+# Start to compile glm
+# tell CMake where the CMakeList.txt of glm is
+add_subdirectory(vendor/glm)
+list(APPEND EXTRA_LIBS glm)
+list(APPEND EXTRA_INCLUDES vendor/glm)
+# End compile
+
 # Include OpenGL
 list(APPEND EXTRA_LIBS opengl32)
 
