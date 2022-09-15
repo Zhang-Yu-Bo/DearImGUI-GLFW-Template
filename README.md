@@ -1,11 +1,12 @@
 # DearImGUI-GLFW-Example
 DearImGUI + GLFW example in vscode building with CMake
 
+## Third Party Library
+* Dear ImGUI: `lastest`
+* GLFW: `lastest`
+* glm(OpenGL math): `lastest`
+
 ## How to build
-1. 用`git clone`克隆本repo
-2. `cd`進入repo的資料夾，用以下指令更新submodule
-```bash
-git submodule update --init --recursive
-```
-3. 用`vscode`開啟之後按下`Ctrl + p`並輸入`>cmake build`建置專案
-4. 按下`F5`或是`Ctrl + F5`執行程式
+1. Use `git clone --recursive [repo]` clone this repo.
+2. Use `vs code` open the project, press `Ctrl + p` and input `>cmake build` build the project. Or use `cmake cli` build the project.
+3. Press `F5` or `Ctrl + F5` to run the program.
